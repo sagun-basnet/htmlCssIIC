@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lunar - IT Services & Training | Itahari, Nepal</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: rgba(20, 36, 80, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 2000;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ffffff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-icon {
+        animation: rotate 10s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: all 0.3s;
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(45deg, #c8102e, #e61e4d);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-links a:hover {
+        color: #c8102e;
+      }
+
+      .mobile-menu {
+        display: none;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Modern Hero Section */
+      .hero {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          #0f1419 0%,
+          #142450 35%,
+          #1e3a72 100%
+        );
+        overflow: hidden;
+      }
+
+      /* Animated Background Elements */
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 20s infinite linear;
+      }
+
+      .shape:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #c8102e, #e61e4d);
+        border-radius: 50%;
+        animation-delay: -2s;
+      }
+
+      .shape:nth-child(2) {
+        top: 70%;
+        left: 80%;
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(45deg, #00d4ff, #0099cc);
+        border-radius: 20px;
+        animation-delay: -8s;
+      }
+
+      .shape:nth-child(3) {
+        top: 40%;
+        left: 80%;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        transform: rotate(45deg);
+        animation-delay: -15s;
+      }
+
+      .shape:nth-child(4) {
+        top: 80%;
+        left: 20%;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #a8e6cf, #7fcdcd);
+        border-radius: 50% 10px 50% 10px;
+        animation-delay: -5s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-20px) rotate(90deg);
+        }
+        50% {
+          transform: translateY(-40px) rotate(180deg);
+        }
+        75% {
+          transform: translateY(-20px) rotate(270deg);
+        }
+      }
+
+      /* Particle System */
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: particleFloat 15s infinite linear;
+      }
+
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) translateX(100px);
+          opacity: 0;
+        }
+      }
+
+      /* Grid Pattern Overlay */
+      .grid-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s ease-in-out infinite;
+      }
+
+      @keyframes gridMove {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-25px, -25px);
+        }
+      }
+
+      /* Hero Content */
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        max-width: 900px;
+        padding: 2rem;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(200, 16, 46, 0.2);
+        border: 1px solid rgba(200, 16, 46, 0.3);
+        color: #ff6b9d;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.1;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .hero h1 .highlight {
+        background: linear-gradient(45deg, #c8102e, #e61e4d, #ff6b9d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textShine 3s ease-in-out infinite;
+      }
+
+      @keyframes textShine {
+        0%,
+        100% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.3);
+        }
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 2vw, 1.4rem);
+        margin-bottom: 3rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        animation: fadeInUp 1s ease-out 0.6s both;
+      }
+
+      /* Interactive CTA Buttons */
+      .cta-container {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 1s ease-out 0.9s both;
+      }
+
+      .btn {
+        position: relative;
+        padding: 16px 32px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, #c8102e, #e61e4d);
+        color: #ffffff;
+        box-shadow: 0 8px 25px rgba(200, 16, 46, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(200, 16, 46, 0.4);
+        background: linear-gradient(45deg, #e61e4d, #ff4757);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
+      }
+
+      /* Floating Stats */
+      .floating-stats {
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+        z-index: 5;
+      }
+
+      .stat-float {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        min-width: 120px;
+        animation: floatStat 6s ease-in-out infinite;
+      }
+
+      .stat-float:nth-child(2) {
+        animation-delay: -2s;
+      }
+
+      .stat-float:nth-child(3) {
+        animation-delay: -4s;
+      }
+
+      @keyframes floatStat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .stat-number {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #c8102e;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 0.5rem;
+      }
+
+      /* Scroll Indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-arrow {
+        width: 30px;
+        height: 30px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-top: none;
+        border-left: none;
+        transform: rotate(45deg);
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0) rotate(45deg);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px) rotate(45deg);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px) rotate(45deg);
+        }
+      }
+
+      /* About Section (keeping original) */
+      .about {
+        padding: 80px 0;
+        background: #f5f5f5;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #142450;
+        font-weight: 700;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .floating-stats {
+          display: none;
+        }
+
+        .cta-container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .hero-content {
+          padding: 1rem;
+        }
+
+        .hero-badge {
+          font-size: 0.8rem;
+          padding: 6px 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 15px;
+        }
+
+        .hero {
+          padding: 120px 0 60px;
+        }
+
+        .btn {
+          padding: 14px 28px;
+          font-size: 1rem;
+        }
+      }
+
+      /* Animation Keyframes */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <a href="#" class="logo">
+          <span class="logo-icon">🌙</span>
+          Lunar
+        </a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#training">Training</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu">☰</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Modern Interactive Hero Section -->
+      <section class="hero" id="home">
+        <!-- Animated Background -->
+        <div class="hero-bg">
+          <div class="grid-overlay"></div>
+          <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+          </div>
+          <div class="particles" id="particles"></div>
+        </div>
+
+        <!-- Floating Stats -->
+        <div class="floating-stats">
+          <div class="stat-float">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Students</span>
+          </div>
+          <div class="stat-float">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-float">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years</span>
+          </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              🚀 Leading IT Training Institute in Nepal
+            </div>
+
+            <h1>
+              Empowering Digital
+              <span class="highlight">Innovation</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Transform your career with cutting-edge IT training and
+              professional development programs. Join Nepal's premier technology
+              education institute in Itahari.
+            </p>
+
+            <div class="cta-container">
+              <a href="#training" class="btn btn-primary">
+                <span>🎓</span>
+                Start Learning Today
+              </a>
+              <a href="#services" class="btn btn-secondary">
+                <span>💼</span>
+                Explore Our Services
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+          <div class="scroll-arrow"></div>
+        </div>
+      </section>
+
+      <!-- About Section (placeholder) -->
+      <section class="about" id="about">
+        <div class="container">
+          <h2 class="section-title">About Lunar</h2>
+          <p
+            style="
+              text-align: center;
+              color: #666;
+              max-width: 600px;
+              margin: 0 auto;
+            "
+          >
+            At Lunar, we bridge the gap between technology and opportunity in
+            Nepal. Based in Itahari, we're passionate about empowering
+            individuals and businesses through cutting-edge IT solutions and
+            comprehensive training programs.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Particle System
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "vw";
+          particle.style.animationDelay = Math.random() * 15 + "s";
+          particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Enhanced Header Scroll Effect
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        const scrollY = window.scrollY;
+
+        if (scrollY > 100) {
+          header.style.background = "rgba(20, 36, 80, 0.98)";
+          header.style.backdropFilter = "blur(20px)";
+          header.style.boxShadow = "0 8px 32px rgba(0,0,0,0.2)";
+        } else {
+          header.style.background = "rgba(20, 36, 80, 0.95)";
+          header.style.backdropFilter = "blur(20px)";
+          header.style.boxShadow = "0 8px 32px rgba(0,0,0,0.1)";
+        }
+      });
+
+      // Smooth Scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Mouse Movement Parallax Effect
+      document.addEventListener("mousemove", function (e) {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+
+        const shapes = document.querySelectorAll(".shape");
+        shapes.forEach((shape, index) => {
+          const speed = (index + 1) * 0.5;
+          const x = (mouseX - 0.5) * speed;
+          const y = (mouseY - 0.5) * speed;
+          shape.style.transform += ` translate(${x}px, ${y}px)`;
+        });
+      });
+
+      // Button Click Effects
+      document.querySelectorAll(".btn").forEach((button) => {
+        button.addEventListener("click", function (e) {
+          const ripple = document.createElement("span");
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+
+          ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    left: ${x}px;
+                    top: ${y}px;
+                    width: ${size}px;
+                    height: ${size}px;
+                `;
+
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+
+      // Add ripple animation
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        createParticles();
+
+        // Add entrance animations to floating stats
+        const floatingStats = document.querySelectorAll(".stat-float");
+        floatingStats.forEach((stat, index) => {
+          setTimeout(() => {
+            stat.style.animation += `, fadeInUp 0.8s ease-out ${
+              index * 0.2
+            }s both`;
+          }, 1000);
+        });
+      });
+
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = "fadeInUp 0.8s ease-out forwards";
+          }
+        });
+      }, observerOptions);
+
+      // Performance optimization: Throttle particle updates
+      let ticking = false;
+      function updateParticles() {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            // Particle updates here if needed
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+    </script>
+  </body>
+</html>

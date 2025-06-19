@@ -1,0 +1,16 @@
+h1 {
+}
+.heading {
+  color: red;
+}
+#head1 {
+}
+.container h1 {
+}
+#head1,
+#para {
+}
+* {
+  padding: 0;
+  margin: 0;
+}
