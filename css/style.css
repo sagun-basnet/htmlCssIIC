@@ -1,16 +1,30 @@
-h1 {
-}
-.heading {
-  color: red;
-}
-#head1 {
-}
-.container h1 {
-}
-#head1,
-#para {
-}
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  border: 4px solid black;
+  height: 100vh;
+  width: 100vw;
+  padding: 2rem 3rem 4rem 5rem;
+  /* padding-top: 3rem;
+  padding-left: 1rem; */
+}
+
+.item {
+  height: 12rem;
+  width: 12rem;
+}
+.item1 {
+  text-align: center;
+  /* background-color: red; */
+  background-image: url(https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.item2 {
+  margin: 3rem 2rem 1.2rem 1.5rem;
+  background-color: blue;
 }
