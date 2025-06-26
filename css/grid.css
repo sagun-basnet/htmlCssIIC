@@ -12,6 +12,8 @@
     "header header"
     "side body"
     "footer footer";
+  row-gap: 2rem;
+  column-gap: 1rem;
   /* grid-template-rows: 10rem 10rem 10rem; */
 }
 #header {
